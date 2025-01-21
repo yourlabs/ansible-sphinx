@@ -1,0 +1,16 @@
+image: yourlabs/python
+
+qa:
+  stage: test
+  script: flake8 --ignore=N806,E704,W503,E501 ansible_sphinx.py
+
+pytest:
+  stage: test
+  script:
+  - pip install --user -e .
+  - cd test/docs && make html
+
+pypi:
+  stage: deploy
+  script: pypi-release
+  only: [tags]

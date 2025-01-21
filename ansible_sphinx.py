@@ -1,7 +1,5 @@
-import cli2
 import docutils
 import functools
-import inspect
 import json
 import subprocess
 import shutil
@@ -9,19 +7,11 @@ import textwrap
 import yaml
 
 from sphinx import addnodes
-from sphinx import directives
-from sphinx import domains
-from sphinx import roles
-from sphinx.application import Sphinx
 from sphinx.directives import ObjectDescription
 from sphinx.domains import Domain, ObjType
 from sphinx.roles import XRefRole
-from sphinx.util import nodes
 from sphinx.util import parsing
-from sphinx.util.docutils import SphinxDirective
 from sphinx.util.nodes import make_refnode
-
-import cli2.sphinx
 
 
 class AnsibleObject(ObjectDescription):
@@ -55,7 +45,7 @@ class AnsibleObject(ObjectDescription):
         - `signode`: The node for rendering the signature.
         """
         name = sig.strip()
-        signode += addnodes.desc_name(name, name)  # Display the name in documentation
+        signode += addnodes.desc_name(name, name)
         return name  # This name is used as a reference ID
 
 
@@ -332,5 +322,5 @@ def generate_modules(collection_path, docs_path):
 
 
 def generate(collection_path, docs_path):
-	generate_roles(collection_path, docs_path)
-	generate_modules(collection_path, docs_path)
+    generate_roles(collection_path, docs_path)
+    generate_modules(collection_path, docs_path)
