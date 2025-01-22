@@ -8,6 +8,7 @@ pytest:
   stage: test
   script:
   - pip install --user -e .
+  - pip install ansible
   - cd test/docs && make html
 
 pypi:
